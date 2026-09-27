@@ -1,28 +1,27 @@
 services:
-  - type: web
+    - type: web
     name: khilane-api
     env: node
+    plan: free
     rootDir: backend
     buildCommand: npm install
-    startCommand: node server.js
+    startCommand: npm start
     envVars:
-      - key: DATABASE_URL
+            - key: DATABASE_URL
         sync: false
-      - key: PAYSTACK_SECRET_KEY
+            - key: PAYSTACK_SECRET_KEY
         sync: false
-      - key: PAYFAST_MERCHANT_ID
+            - key: PAYFAST_MERCHANT_ID
         sync: false
-      - key: OZOW_API_KEY
+            - key: OZOW_API_KEY
         sync: false
-      - key: JWT_SECRET
-        generateValue: true
+            - key: NODE_ENV
+        value: production
 
-  - type: web
+    - type: web
     name: khilane-frontend
     env: static
+    plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://khilane-api.onrender.com
