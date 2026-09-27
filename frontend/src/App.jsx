@@ -41,7 +41,7 @@ export default function App() {
           </div>
         </div>
 
-        <div style={{padding:'70px 5%'}}>
+        <div id="packages" style={{padding:'70px 5%'}}>
           <div style={{textAlign:'center', marginBottom:'40px'}}>
             <h2 style={{fontSize:'42px', fontWeight:800, color:'#0f172a'}}>Popular Packages</h2>
             <p style={{color:'#64748b', fontSize:'18px', marginTop:'10px'}}>Best-selling tours this month — all inclusive, no hidden fees</p>
