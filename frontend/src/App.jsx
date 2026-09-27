@@ -36,7 +36,7 @@ export default function App() {
             <p style={{fontSize:'19px', marginTop:'18px', opacity:0.9, lineHeight:1.5}}>From Cape Town to Kruger, Durban to Drakensberg — handcrafted tours, trusted guides, and unforgettable memories.</p>
             <div style={{display:'flex', gap:'12px', marginTop:'28px'}}>
               <button onClick={()=>document.getElementById('packages').scrollIntoView({behavior:'smooth'})} style={{background:'white', color:'#0f172a', padding:'14px 28px', borderRadius:'999px', fontWeight:700, border:'none', fontSize:'16px', cursor:'pointer'}}>Explore Packages</button>
-              <button onClick={()=>window.open('https://wa.me/27821234567?text=Hi%20Khilane%20Travel%20-%20I%20want%20to%20book%20a%20tour','_blank')} style={{background:'rgba(255,255,255,0.15)', color:'white', padding:'14px 28px', borderRadius:'999px', fontWeight:600, border:'1px solid rgba(255,255,255,0.3)', fontSize:'16px', cursor:'pointer'}}>WhatsApp Us</button>
+              <button onClick={()=>window.open('https://wa.me/27724573419?text=Hi%20Khilane%20Travel%20-%20I%20want%20to%20book%20a%20tour','_blank')} style={{background:'rgba(255,255,255,0.15)', color:'white', padding:'14px 28px', borderRadius:'999px', fontWeight:600, border:'1px solid rgba(255,255,255,0.3)', fontSize:'16px', cursor:'pointer'}}>WhatsApp Us</button>
             </div>
           </div>
         </div>
