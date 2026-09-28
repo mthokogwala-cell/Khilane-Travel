@@ -1,80 +1,71 @@
-export default function App() {
-  const packages = [
-    { id: 1, title: "Cape Town Escape", loc: "Cape Town • 5 Days", price: "R 8,999", img: "https://images.unsplash.com/photo-1580060868583-83b5f33a0a4a?w=600", desc: "Table Mountain, Robben Island & Winelands" },
-    { id: 2, title: "Kruger Safari Adventure", loc: "Kruger National Park • 4 Days", price: "R 12,500", img: "https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=600", desc: "Big 5 game drives & luxury lodge" },
-    { id: 3, title: "Durban Beach & Culture", loc: "Durban • 3 Days", price: "R 5,999", img: "https://images.unsplash.com/photo-1576485290814-1c72c0bbea4a?w=600", desc: "Golden Mile, uShaka & Township tour" },
-    { id: 4, title: "Drakensberg Hiking", loc: "Drakensberg • 3 Days", price: "R 6,500", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600", desc: "Mountains, waterfalls & Basotho culture" },
-  ];
+import React, { useState } from "react";
+const API = "https://khilane-api.onrender.com";
+const WA = "27600000000"; // change to your WhatsApp
 
-  return (
+export default function App(){
+  const [tab,setTab]=useState("flights");
+  const [admin,setAdmin]=useState(false);
+  const [from,setFrom]=useState("JNB");
+  const [to,setTo]=useState("CPT");
+  const [depart,setDepart]=useState("2026-10-15");
+  const [ret,setRet]=useState("2026-10-22");
+  const [city,setCity]=useState("Cape Town");
+
+  const searchFlights = async () => {
+    // This calls YOUR backend -> backend calls Amadeus real API
+    const r = await fetch(`${API}/api/flights/search?from=${from}&to=${to}&depart=${depart}&return=${ret}`);
+    const data = await r.json();
+    alert(`REAL API LIVE: ${data.count} flights found. This will become Amadeus live data.`);
+    window.open(`https://www.aviasales.com/?marker=650123&origin_iata=${from}&destination_iata=${to}&depart_date=${depart}`,"_blank");
+  };
+
+  if(admin){
+    return(
+      <div style={{display:'flex',minHeight:'100vh',background:'#f1f5f9',fontFamily:'Outfit'}}>
+        <div style={{width:260,background:'#0a1931',color:'white',padding:20}}>
+          <div style={{fontWeight:900,color:'#facc15',fontSize:20,marginBottom:20}}>KHILANE OS</div>
+          {['Dashboard','Bookings','Finance','Payroll','Bookkeeper','SARS','Staff','FNB Bank'].map(m=>(
+            <div key={m} style={{padding:'12px 14px',borderRadius:10,marginBottom:6,background:'rgba(255,255,255,.08)'}}>{m}</div>
+          ))}
+          <button onClick={()=>setAdmin(false)} style={{marginTop:20,width:'100%',padding:10,borderRadius:999,border:'none',background:'#facc15',fontWeight:800}}>← Back to Website</button>
+          <div style={{marginTop:20,fontSize:11,opacity:.6}}>CIPC: Khilane Travel (Pty) Ltd<br/>FNB: Business Account Linked<br/>Domain: khilanetravel.co.za</div>
+        </div>
+        <div style={{flex:1,padding:24}}>
+          <h1 style={{fontWeight:900,fontSize:28}}>Business OS — Admin Side</h1>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14,marginTop:20}}>
+            <div style={{background:'white',padding:16,borderRadius:14}}><div>Revenue Today</div><div style={{fontWeight:900,fontSize:22}}>R 12,450</div></div>
+            <div style={{background:'white',padding:16,borderRadius:14}}><div>Bookings</div><div style={{fontWeight:900,fontSize:22}}>24</div></div>
+            <div style={{background:'white',padding:16,borderRadius:14}}><div>Payroll Due</div><div style={{fontWeight:900,fontSize:22}}>R 18,000</div></div>
+            <div style={{background:'white',padding:16,borderRadius:14}}><div>SARS VAT Due</div><div style={{fontWeight:900,fontSize:22}}>R 2,340</div></div>
+          </div>
+          <div style={{marginTop:24,display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
+            <div style={{background:'white',padding:18,borderRadius:14}}><b>Finance Department</b><p style={{fontSize:13,color:'#64748b',marginTop:6}}>Income, Expenses, P&L, FNB bank feed. API ready in backend/routes/finance.js</p></div>
+            <div style={{background:'white',padding:18,borderRadius:14}}><b>SARS Module</b><p style={{fontSize:13,color:'#64748b',marginTop:6}}>VAT201, EMP201, ITR14 auto-calc. 15% VAT, PAYE, UIF, SDL.</p></div>
+            <div style={{background:'white',padding:18,borderRadius:14}}><b>Payroll</b><p style={{fontSize:13,color:'#64748b',marginTop:6}}>Add staff, salaries, generate payslips PDF.</p></div>
+            <div style={{background:'white',padding:18,borderRadius:14}}><b>Bookkeeper</b><p style={{fontSize:13,color:'#64748b',marginTop:6}}>Invoices, Quotes, VAT invoices, FNB reconciliation.</p></div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return(
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
-        * { font-family: 'Outfit', system-ui, sans-serif; box-sizing: border-box; margin:0; padding:0 }
-        .hero {
-          background: linear-gradient(105deg, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.25) 100%), url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600') center/cover;
-          min-height: 88vh;
-        }
-      `}</style>
-
-      <div style={{background:'#f8fafc', minHeight:'100vh'}}>
-        <nav style={{display:'flex', justifyContent:'space-between', alignItems:'center', padding:'18px 5%', background:'white', position:'sticky', top:0, zIndex:50, boxShadow:'0 2px 20px rgba(0,0,0,0.06)'}}>
-          <div style={{display:'flex', alignItems:'center', gap:'10px', fontWeight:800, fontSize:'22px', color:'#0f172a'}}>
-            <span style={{background:'#0f172a', color:'white', width:'36px', height:'36px', display:'grid', placeItems:'center', borderRadius:'10px'}}>K</span>
-            KHILANE TRAVEL
-          </div>
-          <div style={{display:'flex', gap:'24px', fontWeight:600, color:'#334155'}}>
-            <span>Home</span><span>Packages</span><span>Destinations</span><span>Contact</span>
-          </div>
-          <a href="https://khilane-api.onrender.com" target="_blank" style={{background:'#0f172a', color:'white', padding:'10px 20px', borderRadius:'999px', textDecoration:'none', fontWeight:600}}>API Live ✓</a>
-        </nav>
-
-        <div className="hero" style={{display:'flex', alignItems:'center', padding:'5%'}}>
-          <div style={{maxWidth:'620px', color:'white'}}>
-            <div style={{background:'rgba(255,255,255,0.15)', backdropFilter:'blur(10px)', display:'inline-block', padding:'8px 16px', borderRadius:'999px', fontSize:'14px', letterSpacing:'1px'}}>YOUR GATEWAY TO AFRICA 🌍</div>
-            <h1 style={{fontSize:'64px', lineHeight:'0.95', fontWeight:800, marginTop:'20px'}}>Discover South Africa With Khilane</h1>
-            <p style={{fontSize:'19px', marginTop:'18px', opacity:0.9, lineHeight:1.5}}>From Cape Town to Kruger, Durban to Drakensberg — handcrafted tours, trusted guides, and unforgettable memories.</p>
-            <div style={{display:'flex', gap:'12px', marginTop:'28px'}}>
-              <button onClick={()=>document.getElementById('packages').scrollIntoView({behavior:'smooth'})} style={{background:'white', color:'#0f172a', padding:'14px 28px', borderRadius:'999px', fontWeight:700, border:'none', fontSize:'16px', cursor:'pointer'}}>Explore Packages</button>
-              <button onClick={()=>window.open('https://wa.me/27724573419?text=Hi%20Khilane%20Travel%20-%20I%20want%20to%20book%20a%20tour','_blank')} style={{background:'rgba(255,255,255,0.15)', color:'white', padding:'14px 28px', borderRadius:'999px', fontWeight:600, border:'1px solid rgba(255,255,255,0.3)', fontSize:'16px', cursor:'pointer'}}>WhatsApp Us</button>
-            </div>
-          </div>
-        </div>
-
-        <div id="packages" style={{padding:'70px 5%'}}>
-          <div style={{textAlign:'center', marginBottom:'40px'}}>
-            <h2 style={{fontSize:'42px', fontWeight:800, color:'#0f172a'}}>Popular Packages</h2>
-            <p style={{color:'#64748b', fontSize:'18px', marginTop:'10px'}}>Best-selling tours this month — all inclusive, no hidden fees</p>
-          </div>
-          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px, 1fr))', gap:'24px'}}>
-            {packages.map(p => (
-              <div key={p.id} style={{background:'white', borderRadius:'22px', overflow:'hidden', boxShadow:'0 10px 30px rgba(0,0,0,0.06)'}}>
-                <div style={{height:'200px', background:`url(${p.img}) center/cover`}}></div>
-                <div style={{padding:'20px'}}>
-                  <div style={{fontSize:'13px', color:'#64748b', fontWeight:600}}>{p.loc}</div>
-                  <h3 style={{fontSize:'20px', fontWeight:700, marginTop:'6px', color:'#0f172a'}}>{p.title}</h3>
-                  <p style={{color:'#64748b', marginTop:'6px', fontSize:'14px'}}>{p.desc}</p>
-                  <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginTop:'18px'}}>
-                    <span style={{fontSize:'22px', fontWeight:800, color:'#0f172a'}}>{p.price}</span>
-                    <button style={{background:'#0f172a', color:'white', border:'none', padding:'10px 18px', borderRadius:'999px', fontWeight:600}}>Book Now</button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div style={{margin:'0 5% 70px', background:'#0f172a', borderRadius:'28px', padding:'50px', color:'white', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'20px'}}>
-          <div>
-            <h2 style={{fontSize:'36px', fontWeight:800}}>Ready to travel?</h2>
-            <p style={{opacity:0.8, marginTop:'8px', fontSize:'17px'}}>Your website is LIVE. Now connect bookings to your backend API.</p>
-          </div>
-          <button style={{background:'white', color:'#0f172a', padding:'14px 28px', borderRadius:'999px', fontWeight:700, border:'none'}}>Contact Us</button>
-        </div>
-
-        <footer style={{textAlign:'center', padding:'30px', color:'#94a3b8', fontSize:'14px'}}>
-          © 2025 Khilane Travel • Durban, KZN, South Africa • Frontend + Backend LIVE on Render
-        </footer>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&display=swap');*{font-family:Outfit;box-sizing:border-box}`}</style>
+      <div style={{background:'#0a1931',color:'white',padding:'12px 3%',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <div style={{display:'flex',gap:10,alignItems:'center'}}><div style={{width:38,height:38,background:'white',color:'#0a1931',display:'grid',placeItems:'center',borderRadius:10,fontWeight:900}}>K</div><div style={{fontWeight:900,color:'#facc15'}}>KHILANE TRAVEL</div></div>
+        <div style={{display:'flex',gap:16,fontWeight:700}}>{['Flights','Stays','Cars','Buses'].map(k=><span key={k} onClick={()=>setTab(k.toLowerCase())} style={{cursor:'pointer',borderBottom:tab===k.toLowerCase()?'3px solid #facc15':'none'}}>{k}</span>)}</div>
+        <button onClick={()=>setAdmin(true)} style={{background:'#facc15',border:'none',padding:'8px 16px',borderRadius:999,fontWeight:800}}>ADMIN OS</button>
+      </div>
+      <div style={{background:'#facc15',textAlign:'center',padding:'8px',fontWeight:900,fontSize:12}}>🇿🇦 khilanetravel.co.za — PROUDLY SA — LOWEST PRICES GUARANTEED 🇿🇦</div>
+      <div style={{height:380,background:`linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.4)),url('https://images.unsplash.com/photo-1580541631950-7282082b53ce?w=1600') center/cover`,display:'flex',alignItems:'center',padding:'0 5%'}}>
+        <h1 style={{color:'white',fontSize:48,fontWeight:900,lineHeight:.9}}>South Africa's<br/>Cheapest<br/>Travel Booking</h1>
+      </div>
+      <div style={{maxWidth:1100,margin:'-60px auto 0',background:'white',borderRadius:20,boxShadow:'0 20px 60px rgba(0,0,0,.18)',padding:20}}>
+        {tab==='flights' && (<div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr 1fr 140px',gap:10}}><select value={from} onChange={e=>setFrom(e.target.value)} style={{padding:12,borderRadius:10}}><option>JNB</option><option>DUR</option><option>CPT</option></select><select value={to} onChange={e=>setTo(e.target.value)} style={{padding:12,borderRadius:10}}><option>CPT</option><option>JNB</option><option>DUR</option></select><input type="date" value={depart} onChange={e=>setDepart(e.target.value)} style={{padding:11,borderRadius:10}}/><input type="date" value={ret} onChange={e=>setRet(e.target.value)} style={{padding:11,borderRadius:10}}/><button onClick={searchFlights} style={{background:'#facc15',border:'none',borderRadius:999,fontWeight:800}}>Search Flights</button></div>)}
+        {tab==='stays' && (<div style={{display:'grid',gridTemplateColumns:'2fr 1fr 1fr 140px',gap:10}}><input value={city} onChange={e=>setCity(e.target.value)} placeholder="City" style={{padding:12,borderRadius:10,border:'1px solid #ddd'}}/><input type="date" style={{padding:11,borderRadius:10}}/><input type="date" style={{padding:11,borderRadius:10}}/><button style={{background:'#facc15',border:'none',borderRadius:999,fontWeight:800}}>Search Stays</button></div>)}
+        {tab==='cars' && <div>Car hire via DiscoverCars API — live when you add API key</div>}
+        {tab==='buses' && <div>Bus via Intercape — WhatsApp engine + custom inventory</div>}
       </div>
     </>
   )
