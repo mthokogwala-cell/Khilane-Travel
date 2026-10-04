@@ -1,6 +1,8 @@
-res.json({
+app.get('/', (req,res)=> res.json({
+  status: "Khilane API Live v2.1 Real OS",
+  domain: "khilanetravel.co.za",
   currency: "ZAR",
   symbol: "R",
-  priceBeatGuarantee: "R20",
-  khilane: { price: `R${khilanePrice}`, currency: "ZAR" }
-});
+  priceBeat: "R20 on ALL",
+  version: "v2.1 - ZAR Fixed"
+}));
