@@ -1,13 +1,19 @@
-const searchFlights = () => {
-    // FORCE ZAR — South African Rands only
-    const departClean = depart.replace(/-/g,'').slice(2); // 261015
-    const retClean = ret.replace(/-/g,'').slice(2);
-    const aviasalesUrl = `https://www.aviasales.com/search/${from}${departClean}${to}${retClean}1?marker=650123&currency=zar&locale=en-ZA&with_request=true`;
-    
-    // Also call your backend for R20 beat calculation in Rands
-    fetch(`${API}/api/flights/search?from=${from}&to=${to}&depart=${depart}&return=${ret}&currency=ZAR&priceBeat=20`)
-      .then(r=>r.json())
-      .then(d=>console.log("ZAR Price:", d.khilane?.price));
+const API = "https://khilane-api.onrender.com";
+const PRICE_BEAT = 20; // R20
 
-    window.open(aviasalesUrl,"_blank");
-  };
+const searchFlights = () => {
+  const departClean = depart.replace(/-/g,'').slice(2); // 261015
+  const retClean = ret.replace(/-/g,'').slice(2); // 261022
+  const departFull = depart.replace(/-/g,'');
+  const retFull = ret.replace(/-/g,'');
+  
+  // FINAL ZAR FIX - .co.za domain forces Rands
+  const zarUrl = `https://www.aviasales.co.za/search/${from}${departClean}${to}${retClean}1?marker=650123&currency=ZAR&locale=en-ZA&with_request=true&origin_iata=${from}&destination_iata=${to}&depart_date=${departFull}&return_date=${retFull}`;
+  
+  window.open(zarUrl, "_blank");
+};
+
+// Same for Hotels and Cars - force ZAR
+const searchHotels = () => {
+  window.open(`https://www.hotellook.com/hotels?marker=650123&currency=ZAR&locale=en&city=${encodeURIComponent(city)}&checkIn=${depart}&checkOut=${ret}`, "_blank");
+};
