@@ -1,1 +1,3 @@
-   /*    /index.html   200
+frontend/
+  public/
+    _redirects  ← 27 Bytes, 1 line: /* /index.html 200
