@@ -72,24 +72,43 @@ export default function App() {
           </div>
         </div>
 
-        {/* SEARCH CARD */}
+        {/* SEARCH CARD - FIXED RESPONSIVE TABS */}
         <div style={{ position: 'relative', zIndex: 20, padding: '0 24px', marginTop: '-56px', display: 'flex', justifyContent: 'center' }}>
+          <style>{`
+            .tabs-container { display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex-wrap: nowrap; }
+            .tabs-container::-webkit-scrollbar { display: none; }
+            .tab-btn { display: flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 11px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: all 0.2s; min-height: 40px; }
+            .tab-btn:hover { transform: translateY(-1px); }
+            .tab-btn.active { background: #0B1F3A !important; color: white !important; box-shadow: 0 4px 12px rgba(11,31,58,0.25); }
+            .tab-btn.inactive { background: #F3F5F7; color: #5A6A7F; }
+            .tab-btn.inactive:hover { background: #E9EEF3; color: #0B1F3A; }
+            @media (max-width: 768px) {
+              .tabs-header { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+              .tabs-container { width: 100%; padding-bottom: 4px; }
+              .tab-btn { padding: 10px 14px; font-size: 12.5px; }
+              .search-grid { grid-template-columns: 1fr !important; }
+              .search-grid > div { grid-column: span 1 !important; }
+            }
+            @media (max-width: 480px) {
+              .tab-btn { padding: 9px 12px; font-size: 12px; }
+            }
+          `}</style>
           <div style={{ width: '100%', maxWidth: '1100px', background: 'white', borderRadius: '18px', boxShadow: '0 18px 56px rgba(11,31,58,0.18), 0 2px 10px rgba(11,31,58,0.08)', border: '1px solid rgba(0,0,0,0.05)', overflow: 'hidden' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', flexWrap: 'wrap', background: 'white' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
+            <div className="tabs-header" style={{ display: 'flex', justifyContent: 'space-between', padding: '12px', background: 'white', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div className="tabs-container">
                 {[
-                  { id:'flights', label:'Flights', icon:'✈️' },
-                  { id:'stays', label:'Stays', icon:'🏨' },
-                  { id:'cars', label:'Cars', icon:'🚗' },
-                  { id:'buses', label:'Buses', icon:'🚌' },
+                  { id:'flights', label:'Flights', icon:'✈️', note:'Flights active • R20 guarantee applies' },
+                  { id:'stays', label:'Stays', icon:'🏨', note:'Stays • R20 beat guarantee • via Travelstart' },
+                  { id:'cars', label:'Cars', icon:'🚗', note:'Cars • R20 beat guarantee • via Travelstart' },
+                  { id:'buses', label:'Buses', icon:'🚌', note:'Buses • R20 beat guarantee • via Travelstart' },
                 ].map(tab => (
-                  <button key={tab.id} onClick={()=>setActiveTab(tab.id)} style={{ display: 'flex', gap: '6px', padding: '10px 16px', borderRadius: '11px', fontSize: '13px', fontWeight: 700, border: 'none', cursor: 'pointer', background: activeTab===tab.id ? '#0B1F3A' : '#F3F5F7', color: activeTab===tab.id ? 'white' : '#5A6A7F' }}>
+                  <button key={tab.id} onClick={()=>setActiveTab(tab.id)} className={`tab-btn ${activeTab===tab.id ? 'active' : 'inactive'}`}>
                     <span>{tab.icon}</span>{tab.label}
                   </button>
                 ))}
               </div>
-              <div style={{ background: '#0B1F3A', color: 'white', fontSize: '10.5px', fontWeight: 700, padding: '6px 12px', borderRadius: '999px', display: 'flex', gap: '6px', alignItems: 'center' }}>
-                <span style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#FFC107', color: '#0B1F3A', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px' }}>R</span>
+              <div style={{ background: '#0B1F3A', color: 'white', fontSize: '10.5px', fontWeight: 700, padding: '7px 14px', borderRadius: '999px', display: 'flex', gap: '6px', alignItems: 'center', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                <span style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#FFC107', color: '#0B1F3A', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 900 }}>R</span>
                 Price Beat Guarantee: We beat any price by R20
               </div>
             </div>
@@ -104,39 +123,63 @@ export default function App() {
                   <span style={{ fontSize: '12.5px', fontWeight: 600, color: tripType===opt.id ? '#0B1F3A' : '#6B7D94' }}>{opt.label}</span>
                 </label>
               ))}
-              <span style={{ marginLeft: 'auto', fontSize: '11px', fontWeight: 700, color: '#0B1F3A', background: 'rgba(255,193,7,0.2)', border: '1px solid rgba(255,193,7,0.3)', padding: '4px 10px', borderRadius: '999px' }}>Flights active • R20 guarantee applies</span>
+              <span style={{ marginLeft: 'auto', fontSize: '11px', fontWeight: 700, color: '#0B1F3A', background: 'rgba(255,193,7,0.2)', border: '1px solid rgba(255,193,7,0.3)', padding: '4px 10px', borderRadius: '999px' }}>
+                {activeTab==='flights' ? 'Flights active • R20 guarantee applies' : activeTab==='stays' ? 'Stays • R20 beat • via Travelstart' : activeTab==='cars' ? 'Cars • R20 beat • via Travelstart' : 'Buses • R20 beat • via Travelstart'}
+              </span>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '10px', padding: '12px', background: 'white' }}>
-              <div style={{ gridColumn: 'span 3', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
-                <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>From</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
-                  <div><div style={{ fontSize: '13.5px', fontWeight: 700, color: '#0B1F3A' }}>Johannesburg</div><div style={{ fontSize: '11px', color: '#7A8CA6', fontWeight: 500, marginTop: '2px' }}>JNB</div></div>
-                  <button style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'white', border: '1px solid #E3E8EF', cursor: 'pointer' }}>⇄</button>
-                </div>
-              </div>
-              <div style={{ gridColumn: 'span 3', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
-                <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>To</div>
-                <div style={{ marginTop: '4px' }}><div style={{ fontSize: '13.5px', fontWeight: 700, color: '#0B1F3A' }}>Cape Town</div><div style={{ fontSize: '11px', color: '#7A8CA6', fontWeight: 500, marginTop: '2px' }}>CPT</div></div>
-              </div>
-              <div style={{ gridColumn: 'span 2', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
-                <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>Departure</div>
-                <div style={{ fontSize: '13px', fontWeight: 600, color: '#0B1F3A', marginTop: '4px' }}>📅 12 Jan 2026</div>
-              </div>
-              <div style={{ gridColumn: 'span 2', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
-                <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>Return</div>
-                <div style={{ fontSize: '13px', fontWeight: 600, color: '#0B1F3A', marginTop: '4px' }}>📅 19 Jan 2026</div>
-              </div>
-              <div style={{ gridColumn: 'span 2', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
-                <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>Travelers</div>
-                <div style={{ fontSize: '11px', fontWeight: 600, color: '#0B1F3A', marginTop: '4px', lineHeight: '1.2' }}>👥 2 Adults, 1 Child</div>
-              </div>
+
+            {/* RESPONSIVE SEARCH GRID - WORKS FOR ALL TABS */}
+            <div className="search-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '10px', padding: '12px', background: 'white' }}>
+              {activeTab==='flights' ? (
+                <>
+                  <div style={{ gridColumn: 'span 3', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>From</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
+                      <div><div style={{ fontSize: '13.5px', fontWeight: 700, color: '#0B1F3A' }}>Johannesburg</div><div style={{ fontSize: '11px', color: '#7A8CA6', fontWeight: 500, marginTop: '2px' }}>JNB</div></div>
+                      <button style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'white', border: '1px solid #E3E8EF', cursor: 'pointer' }}>⇄</button>
+                    </div>
+                  </div>
+                  <div style={{ gridColumn: 'span 3', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>To</div>
+                    <div style={{ marginTop: '4px' }}><div style={{ fontSize: '13.5px', fontWeight: 700, color: '#0B1F3A' }}>Cape Town</div><div style={{ fontSize: '11px', color: '#7A8CA6', fontWeight: 500, marginTop: '2px' }}>CPT</div></div>
+                  </div>
+                  <div style={{ gridColumn: 'span 2', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>Departure</div>
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: '#0B1F3A', marginTop: '4px' }}>📅 12 Jan 2026</div>
+                  </div>
+                  <div style={{ gridColumn: 'span 2', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>Return</div>
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: '#0B1F3A', marginTop: '4px' }}>📅 19 Jan 2026</div>
+                  </div>
+                  <div style={{ gridColumn: 'span 2', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>Travelers</div>
+                    <div style={{ fontSize: '11px', fontWeight: 600, color: '#0B1F3A', marginTop: '4px', lineHeight: '1.2' }}>👥 2 Adults, 1 Child</div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div style={{ gridColumn: 'span 8', background: '#FFF8E1', borderRadius: '12px', padding: '16px', border: '1px solid #FFECB3', display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#FFC107', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>{activeTab==='stays' ? '🏨' : activeTab==='cars' ? '🚗' : '🚌'}</div>
+                    <div>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: '#0B1F3A' }}>{activeTab==='stays' ? 'Stays - Hotels & Accommodation' : activeTab==='cars' ? 'Cars - Car Rentals' : 'Buses - Bus Tickets'} - R20 Beat Guarantee applies!</div>
+                      <div style={{ fontSize: '11px', color: '#6B7D94', marginTop: '2px' }}>Search on Travelstart • All prices in ZAR (R) • We beat any price by R20 • No suppliers named</div>
+                    </div>
+                  </div>
+                  <div style={{ gridColumn: 'span 4', background: '#F5F7F9', borderRadius: '12px', padding: '12px 14px', border: '1px solid rgba(0,0,0,0.02)' }}>
+                    <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', color: '#7A8CA6', textTransform: 'uppercase' }}>Travelers / Details</div>
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: '#0B1F3A', marginTop: '4px' }}>👥 2 Adults, 1 Child • ZAR</div>
+                  </div>
+                </>
+              )}
             </div>
-            <div style={{ padding: '0 12px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'white' }}>
+            <div style={{ padding: '0 12px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'white', flexWrap: 'wrap', gap: '10px' }}>
               <div style={{ display: 'flex', gap: '8px', alignItems: 'center', fontSize: '11px', color: '#6B7D94' }}>
                 <span style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#E6F7F5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>
-                <span><b style={{ color: '#0B1F3A' }}>R20 Price Beat Guarantee</b> — applied at checkout • All prices in ZAR</span>
+                <span><b style={{ color: '#0B1F3A' }}>R20 Price Beat Guarantee</b> — applied at checkout • All prices in ZAR • {activeTab}</span>
               </div>
-              <button onClick={handleSearch} style={{ background: '#FFC107', color: '#0B1F3A', fontWeight: 800, fontSize: '13.5px', borderRadius: '12px', padding: '13px 28px', border: 'none', cursor: 'pointer', boxShadow: '0 2px 10px rgba(255,193,7,0.35)' }}>🔍 Search Flights</button>
+              <button onClick={handleSearch} style={{ background: '#FFC107', color: '#0B1F3A', fontWeight: 800, fontSize: '13.5px', borderRadius: '12px', padding: '13px 28px', border: 'none', cursor: 'pointer', boxShadow: '0 2px 10px rgba(255,193,7,0.35)', whiteSpace: 'nowrap' }}>
+                {activeTab==='flights' ? '🔍 Search Flights' : activeTab==='stays' ? '🏨 Search Stays' : activeTab==='cars' ? '🚗 Search Cars' : '🚌 Search Buses'}
+              </button>
             </div>
           </div>
         </div>
