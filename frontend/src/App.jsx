@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'flights' | 'stays' | 'cars' | 'buses'>('flights');
-  const [tripType, setTripType] = useState<'return' | 'oneway' | 'multi'>('return');
+  const [activeTab, setActiveTab] = useState('flights');
+  const [tripType, setTripType] = useState('return');
   const [from, setFrom] = useState({ city: 'Johannesburg', code: 'JNB' });
   const [to, setTo] = useState({ city: 'Cape Town', code: 'CPT' });
-  const [tabFeedback, setTabFeedback] = useState<string>('Flights active • R20 guarantee applies');
+  const [tabFeedback, setTabFeedback] = useState('Flights active • R20 guarantee applies');
 
   const AFFILIATE_URL = 'https://www.travelstart.co.za/?affId=PLACEHOLDER';
 
@@ -116,7 +116,7 @@ export default function App() {
                   <button
                     key={tab.id}
                     onClick={()=>{
-                      setActiveTab(tab.id as any);
+                      setActiveTab(tab.id);
                       setTabFeedback(tab.note);
                     }}
                     className={`flex items-center gap-1.5 px-4 py-2.5 rounded-[11px] text-[13px] font-bold transition ${activeTab===tab.id?'bg-[#0B1F3A] text-white shadow-sm ring-2 ring-[#FFC107]/40':'bg-[#F3F5F7] text-[#5A6A7F] hover:bg-[#E9EEF3]'}`}
@@ -139,7 +139,7 @@ export default function App() {
                   <div className={`w-[18px] h-[18px] rounded-full border-[1.8px] flex items-center justify-center transition ${tripType===opt.id?'border-[#0B1F3A] bg-white':'border-[#C2CAD6] group-hover:border-[#8FA0B8]'}`}>
                     {tripType===opt.id && <div className="w-[8px] h-[8px] rounded-full bg-[#0B1F3A]" />}
                   </div>
-                  <input type="radio" className="hidden" checked={tripType===opt.id} onChange={()=>setTripType(opt.id as any)} />
+                  <input type="radio" className="hidden" checked={tripType===opt.id} onChange={()=>setTripType(opt.id)} />
                   <span className={`text-[12.5px] font-semibold ${tripType===opt.id?'text-[#0B1F3A]':'text-[#6B7D94]'}`}>{opt.label}</span>
                 </label>
               ))}
