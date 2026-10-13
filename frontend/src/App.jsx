@@ -115,10 +115,9 @@ export default function App() {
           <div style={{ background: NAVY, color: 'white', borderRadius: 20, padding: 20 }}>
             <div style={{ fontWeight: 900, fontSize: 16 }}>Why Khilane Travel?</div>
             <div style={{ marginTop: 12, display: 'grid', gap: 10, fontSize: 13 }}>
-              <div>V South Africa's Lowest Prices — Beat by R50 Guaranteed</div>
+              <div>V South Africa's Lowest Prices — Beat by R20 Guaranteed</div>
               <div>V Instant E-Ticket — No waiting, ticket issued in minutes</div>
               <div>V Trusted SA Brand — Powered by Travelstart</div>
-              <div>V Secure & Safe — No hidden USD, ZAR only</div>
               <div>V 24/7 Support — Changes, refunds, customer care</div>
               <div style={{ background: GOLD, color: NAVY, padding: 10, borderRadius: 10, fontWeight: 900 }}>V 100% Secure Checkout — Instant confirmation</div>
             </div>
@@ -144,7 +143,7 @@ export default function App() {
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 11, color: '#94a3b8', textDecoration: 'line-through' }}>R{item.original}</div>
                     <div style={{ fontWeight: 900, fontSize: 16, color: NAVY }}>R{item.price}</div>
-                    {item.badge && <div style={{ marginTop: 2, display: 'inline-flex', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 999, background: GOLD, color: NAVY }}>BEAT BY R50</div>}
+                    {item.badge && <div style={{ marginTop: 2, display: 'inline-flex', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 999, background: GOLD, color: NAVY }}>BEAT BY R20</div>}
                   </div>
                   <button onClick={() => openTravelstart()} style={{ height: 40, padding: '0 18px', borderRadius: 999, background: NAVY, color: 'white', border: 'none', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>Select — Book Now</button>
                 </div>
