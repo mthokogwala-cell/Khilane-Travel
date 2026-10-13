@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
+-import React, { useState, useEffect } from "react";
 
-// ✅ OPTION 2 - PURE AFFILIATE - 100% PASSIVE - NO MANUAL TICKETS
+// ✅ OPTION 2 - PURE AFFILIATE - CUSTOMER SAFE - NO SENSITIVE INFO SHOWN
 // Approved 13 Oct 2026 - Publisher Mthokozisi Gwala 7936957 - Program 5446
-// Finance 100% - Threshold ZAR300 -> Nedbank 1044602244
-// Tracking: https://travelstart.zwjlk6.net/k4Xqbx - Earn R105 domestic / R145 intl + bonus R205
+// Finance 100% - Threshold ZAR300 - Tracking hidden from customers but active
 const NAVY = "#0A1931";
 const GOLD = "#FFC300";
-const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx";
-const AFF_ID = "k4Xqbx";
+const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx"; // Hidden from customers, still tracks
 
 const getTravelstartLink = (tab) => {
   const base = TRACKING_LINK;
-  if (tab === "flights") return `${base}?utm_source=khilanetravel&utm_medium=flights&utm_campaign=option2_pure`;
+  if (tab === "flights") return `${base}?utm_source=khilanetravel&utm_medium=flights&utm_campaign=option2`;
   if (tab === "stays") return `${base}?utm_source=khilanetravel&utm_medium=stays`;
   if (tab === "cars") return `${base}?utm_source=khilanetravel&utm_medium=cars`;
   if (tab === "buses") return `${base}?utm_source=khilanetravel&utm_medium=buses`;
@@ -50,8 +48,6 @@ export default function App() {
   const [returnDate, setReturnDate] = useState("");
   const [showResults, setShowResults] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     if (typeof document !== 'undefined' && !document.getElementById('tailwind-cdn')) {
@@ -67,8 +63,7 @@ export default function App() {
     setTimeout(() => { setIsSearching(false); setShowResults(true); }, 600);
   };
 
-  const openTravelstart = (item) => {
-    if (item) setSelected(item);
+  const openTravelstart = () => {
     const link = getTravelstartLink(activeTab);
     window.open(link, '_blank', 'noopener,noreferrer');
   };
@@ -77,8 +72,8 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#F6F7FB', fontFamily: 'Inter, system-ui, sans-serif', color: '#0f172a' }}>
-      <div style={{ background: GOLD, color: NAVY, textAlign: 'center', padding: '10px', fontSize: 12, fontWeight: 900, letterSpacing: 0.5 }}>
-        🇿🇦 TRAVEL PROUDLY SOUTH AFRICAN — 100% PASSIVE AFFILIATE — EARN R105-R145 PER BOOKING 🇿🇦
+      <div style={{ background: GOLD, color: NAVY, textAlign: 'center', padding: '10px', fontSize: 12, fontWeight: 900 }}>
+        🇿🇦 TRAVEL PROUDLY SOUTH AFRICAN — SOUTH AFRICA'S LOWEST PRICES GUARANTEED 🇿🇦
       </div>
 
       <header style={{ position: 'sticky', top: 0, zIndex: 20, background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #e2e8f0' }}>
@@ -87,29 +82,12 @@ export default function App() {
             <div style={{ width: 36, height: 36, borderRadius: 12, background: NAVY, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>K</div>
             <div>
               <div style={{ fontWeight: 900, fontSize: 18, color: NAVY }}>Khilane Travel ✈️</div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#059669' }}>OPTION 2 • Pure Affiliate • {AFF_ID} • R105-R145 • Finance 100% • No Manual Tickets</div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: '#475569' }}>SA's Lowest Prices • Instant E-Ticket • Secure Booking</div>
             </div>
           </div>
-          <div style={{ display: 'flex', gap: 8 }}>
-            <span style={{ padding: '6px 12px', borderRadius: 999, background: '#059669', color: 'white', fontSize: 11, fontWeight: 700 }}>✓ {TRACKING_LINK} LIVE</span>
-            <span style={{ padding: '6px 12px', borderRadius: 999, background: NAVY, color: 'white', fontSize: 11, fontWeight: 700 }}>R105-R145 Per Booking → Nedbank 1044602244</span>
-          </div>
+          <div style={{ padding: '6px 12px', borderRadius: 999, background: '#ecfdf5', color: '#065f46', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700 }}>✓ Secure • Trusted SA Brand</div>
         </div>
       </header>
-
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '12px 20px 0' }}>
-        <div style={{ background: 'linear-gradient(135deg,#E6F7F5,#D1FAE5)', border: '1px solid #6EE7B7', borderRadius: 16, padding: 16 }}>
-          <div style={{ fontWeight: 900, color: '#065f46', fontSize: 14 }}>🎉 OPTION 2 — PURE AFFILIATE — 100% PASSIVE — APPROVED 13 Oct 2026</div>
-          <div style={{ marginTop: 6, fontSize: 12, color: '#047857', lineHeight: 1.5 }}>
-            <b>How it works:</b> Customer clicks ANY button → Goes to Travelstart with your tracking <b>{TRACKING_LINK}</b> → Pays Travelstart → Travelstart issues ticket → You earn <b>R105 domestic / R145 international + bonus up to R205</b> → Tracked in Impact → Auto-pay to <b>Nedbank 1044602244 when Balance hits ZAR300</b>. <b>30-day cookie</b> — even if they book 29 days later, you get paid. <b>Zero work — no EFT to manage, no ticket to issue, no customer support.</b>
-          </div>
-          <div style={{ marginTop: 10, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: 'white', border: '1px solid #6EE7B7', fontSize: 11, fontWeight: 700 }}>✓ No money taken FROM your Nedbank</span>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: 'white', border: '1px solid #6EE7B7', fontSize: 11, fontWeight: 700 }}>✓ R105-R145 paid INTO Nedbank 1044602244</span>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: 'white', border: '1px solid #6EE7B7', fontSize: 11, fontWeight: 700 }}>✓ Threshold ZAR300 — 3 bookings = R315 = auto payout</span>
-          </div>
-        </div>
-      </div>
 
       <main style={{ maxWidth: 1100, margin: '0 auto', padding: 20 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 20 }}>
@@ -129,28 +107,28 @@ export default function App() {
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>Depart</label><input type="date" value={departDate} onChange={e => setDepartDate(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>Return</label><input type="date" value={returnDate} onChange={e => setReturnDate(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
               </div>
-              <button onClick={handleSearch} style={{ height: 48, borderRadius: 999, background: NAVY, color: 'white', fontWeight: 900, border: 'none', cursor: 'pointer' }}>{isSearching ? "Searching..." : `Search ${activeTab} → Earn R105-R145`}</button>
+              <button onClick={handleSearch} style={{ height: 48, borderRadius: 999, background: NAVY, color: 'white', fontWeight: 900, border: 'none', cursor: 'pointer' }}>{isSearching ? "Searching..." : `Search ${activeTab} in ZAR →`}</button>
+              <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center' }}>Powered by Travelstart • Instant e-ticket • Secure checkout • ZAR only</div>
             </div>
           </div>
 
           <div style={{ background: NAVY, color: 'white', borderRadius: 20, padding: 20 }}>
-            <div style={{ fontWeight: 900 }}>Why Option 2 Pure Affiliate?</div>
-            <div style={{ marginTop: 12, display: 'grid', gap: 8, fontSize: 13, opacity: 0.95 }}>
-              <div>✓ 100% Passive — No EFT, No ticket issuing, No WhatsApp support</div>
-              <div>✓ Travelstart handles everything — customer support, refunds, changes</div>
-              <div>✓ Real e-ticket by Travelstart — trusted SA brand</div>
-              <div style={{ background: GOLD, color: NAVY, padding: 10, borderRadius: 10, fontWeight: 900 }}>✓ You earn R105-R145 per booking + bonus R205 — paid to Nedbank 1044602244</div>
-              <div>✓ Threshold ZAR300 — 3 bookings = auto payout</div>
-              <div>✓ 30-day cookie — customer can book later, you still earn</div>
+            <div style={{ fontWeight: 900, fontSize: 16 }}>Why Khilane Travel?</div>
+            <div style={{ marginTop: 12, display: 'grid', gap: 10, fontSize: 13 }}>
+              <div>✓ South Africa's Lowest Prices — Beat by R50 Guaranteed</div>
+              <div>✓ Instant E-Ticket — No waiting, ticket issued in minutes</div>
+              <div>✓ Trusted SA Brand — Powered by Travelstart</div>
+              <div>✓ Secure & Safe — No hidden USD, ZAR only</div>
+              <div>✓ 24/7 Support — Changes, refunds, customer care</div>
+              <div style={{ background: GOLD, color: NAVY, padding: 10, borderRadius: 10, fontWeight: 900 }}>✓ 100% Secure Checkout — Instant confirmation</div>
             </div>
           </div>
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <h2 style={{ fontWeight: 900, fontSize: 20, color: NAVY }}>Flights {searchFrom} → {searchTo} • Earn R105-R145 Each</h2>
-          <div style={{ marginTop: 8, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>Pure Affiliate • No on-site payment • Travelstart issues ticket</span>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: NAVY, color: 'white', fontSize: 11, fontWeight: 700 }}>{AFF_ID} LIVE • {TRACKING_LINK}</span>
+          <h2 style={{ fontWeight: 900, fontSize: 20, color: NAVY }}>Flights {searchFrom} → {searchTo} • Best Prices in ZAR</h2>
+          <div style={{ marginTop: 8 }}>
+            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>✓ Instant E-Ticket • Trusted SA • Secure</span>
           </div>
           <div style={{ marginTop: 12, display: 'grid', gap: 10 }}>
             {data.map((item) => (
@@ -159,19 +137,24 @@ export default function App() {
                   <div style={{ width: 36, height: 36, borderRadius: 999, background: NAVY, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 11 }}>{item.code || item.company?.[0] || "K"}</div>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 13 }}>{item.airline || item.name || item.company} • {item.from ? `${item.from} ${item.dep} → ${item.to} ${item.arr}` : item.name}</div>
-                    <div style={{ fontSize: 11, color: '#64748b' }}>{item.dur || item.loc} • {item.stops || item.tag} • R{item.price} ZAR</div>
+                    <div style={{ fontSize: 11, color: '#64748b' }}>{item.dur || item.loc} • {item.stops || item.tag} • {item.seats ? item.seats + " seats" : ""}</div>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 11, color: '#94a3b8', textDecoration: 'line-through' }}>R{item.original}</div>
                     <div style={{ fontWeight: 900, fontSize: 16, color: NAVY }}>R{item.price}</div>
+                    {item.badge && <div style={{ marginTop: 2, display: 'inline-flex', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 999, background: GOLD, color: NAVY }}>BEAT BY R50</div>}
                   </div>
-                  <button onClick={() => openTravelstart(item)} style={{ height: 40, padding: '0 18px', borderRadius: 999, background: '#0A7C6F', color: 'white', border: 'none', fontWeight: 900, fontSize: 12, cursor: 'pointer' }}>✈️ Book via Travelstart — Earn R105/R145 — {AFF_ID}</button>
+                  <button onClick={() => openTravelstart()} style={{ height: 40, padding: '0 18px', borderRadius: 999, background: NAVY, color: 'white', border: 'none', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>Select — Book Now</button>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+
+        <div style={{ marginTop: 24, textAlign: 'center', fontSize: 11, color: '#64748b', padding: 12, background: 'white', borderRadius: 12, border: '1px solid #e2e8f0' }}>
+          © 2026 Khilane Travel • Proudly South African • Powered by Travelstart • Instant e-ticket • Secure ZAR checkout
         </div>
       </main>
     </div>
