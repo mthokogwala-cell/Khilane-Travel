@@ -31,9 +31,9 @@ const mockStays = [
   { id: 104, name: "Cape Grace, Fairmont Managed", loc: "V&A Waterfront, Cape Town", rating: 4.9, reviews: 756, price: 4250, original: 4600, per: "night", tag: "Harbour Views", badge: true },
 ];
 const mockCars = [
-  { id: 201, name: "Toyota Corolla Quest", type: "Sedan • Manual", seats: 5, bags: 2, fuel: "Petrol", price: 489, original: 539, per: "day", badge: true, company: "Avis" },
-  { id: 202, name: "VW Polo Vivo", type: "Hatch • Manual", seats: 5, bags: 2, fuel: "Petrol", price: 425, original: 475, per: "day", badge: true, company: "Budget" },
-  { id: 203, name: "Toyota Fortuner", type: "SUV • Auto", seats: 7, bags: 3, fuel: "Diesel", price: 1150, original: 1220, per: "day", badge: false, company: "Hertz" },
+  { id: 201, name: "Toyota Corolla Quest", type: "Sedan - Manual", seats: 5, bags: 2, fuel: "Petrol", price: 489, original: 539, per: "day", badge: true, company: "Avis" },
+  { id: 202, name: "VW Polo Vivo", type: "Hatch - Manual", seats: 5, bags: 2, fuel: "Petrol", price: 425, original: 475, per: "day", badge: true, company: "Budget" },
+  { id: 203, name: "Toyota Fortuner", type: "SUV - Auto", seats: 7, bags: 3, fuel: "Diesel", price: 1150, original: 1220, per: "day", badge: false, company: "Hertz" },
 ];
 const mockBuses = [
   { id: 301, company: "Intercape", from: "JNB Park Station", to: "CPT Station", dep: "18:00", arr: "12:30+1", dur: "18h 30m", price: 685, original: 735, badge: true, type: "Sleepliner" },
@@ -82,10 +82,10 @@ export default function App() {
             <div style={{ width: 36, height: 36, borderRadius: 12, background: NAVY, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>K</div>
             <div>
               <div style={{ fontWeight: 900, fontSize: 18, color: NAVY }}>Khilane Travel Flight</div>
-              <div style={{ fontSize: 11, fontWeight: 600, color: '#475569' }}>SA's Lowest Prices • Instant E-Ticket • Secure Booking</div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: '#475569' }}>SA's Lowest Prices - Instant E-Ticket - Secure Booking</div>
             </div>
           </div>
-          <div style={{ padding: '6px 12px', borderRadius: 999, background: '#ecfdf5', color: '#065f46', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700 }}>V Secure • Trusted SA Brand</div>
+          <div style={{ padding: '6px 12px', borderRadius: 999, background: '#ecfdf5', color: '#065f46', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700 }}>V Secure - Trusted SA Brand</div>
         </div>
       </header>
 
@@ -100,15 +100,15 @@ export default function App() {
             <div style={{ padding: '0 20px 20px', display: 'grid', gap: 12 }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 8, alignItems: 'end' }}>
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>From</label><input value={searchFrom} onChange={e => setSearchFrom(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
-                <div style={{ paddingBottom: 10 }}><-></div>
+                <div style={{ paddingBottom: 10 }}>to</div>
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>To</label><input value={searchTo} onChange={e => setSearchTo(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>Depart</label><input type="date" value={departDate} onChange={e => setDepartDate(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>Return</label><input type="date" value={returnDate} onChange={e => setReturnDate(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
               </div>
-              <button onClick={handleSearch} style={{ height: 48, borderRadius: 999, background: NAVY, color: 'white', fontWeight: 900, border: 'none', cursor: 'pointer' }}>{isSearching ? "Searching..." : `Search ${activeTab} in ZAR →`}</button>
-              <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center' }}>Powered by Travelstart • Instant e-ticket • Secure checkout • ZAR only</div>
+              <button onClick={handleSearch} style={{ height: 48, borderRadius: 999, background: NAVY, color: 'white', fontWeight: 900, border: 'none', cursor: 'pointer' }}>{isSearching ? "Searching..." : `Search ${activeTab} in ZAR  -> `}</button>
+              <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center' }}>Powered by Travelstart - Instant e-ticket - ZAR</div>
             </div>
           </div>
 
@@ -126,9 +126,9 @@ export default function App() {
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <h2 style={{ fontWeight: 900, fontSize: 20, color: NAVY }}>Flights {searchFrom} → {searchTo} • Best Prices in ZAR</h2>
+          <h2 style={{ fontWeight: 900, fontSize: 20, color: NAVY }}>Flights {searchFrom}  ->  {searchTo} - Best Prices in ZAR</h2>
           <div style={{ marginTop: 8 }}>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>V Instant E-Ticket • Trusted SA • Secure</span>
+            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>V Instant E-Ticket - Trusted SA - Secure</span>
           </div>
           <div style={{ marginTop: 12, display: 'grid', gap: 10 }}>
             {data.map((item) => (
@@ -136,8 +136,8 @@ export default function App() {
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                   <div style={{ width: 36, height: 36, borderRadius: 999, background: NAVY, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 11 }}>{item.code || item.company?.[0] || "K"}</div>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 13 }}>{item.airline || item.name || item.company} • {item.from ? `${item.from} ${item.dep} → ${item.to} ${item.arr}` : item.name}</div>
-                    <div style={{ fontSize: 11, color: '#64748b' }}>{item.dur || item.loc} • {item.stops || item.tag} • {item.seats ? item.seats + " seats" : ""}</div>
+                    <div style={{ fontWeight: 700, fontSize: 13 }}>{item.airline || item.name || item.company} - {item.from ? `${item.from} ${item.dep}  ->  ${item.to} ${item.arr}` : item.name}</div>
+                    <div style={{ fontSize: 11, color: '#64748b' }}>{item.dur || item.loc} - {item.stops || item.tag} - {item.seats ? item.seats + " seats" : ""}</div>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -154,7 +154,7 @@ export default function App() {
         </div>
 
         <div style={{ marginTop: 24, textAlign: 'center', fontSize: 11, color: '#64748b', padding: 12, background: 'white', borderRadius: 12, border: '1px solid #e2e8f0' }}>
-          © 2026 Khilane Travel • Proudly South African • Powered by Travelstart • Instant e-ticket • Secure ZAR checkout
+          © 2026 Khilane Travel - Proudly South African - Powered by Travelstart - Instant e-ticket - Secure ZAR checkout
         </div>
       </main>
     </div>
