@@ -40,22 +40,6 @@ const getTravelstartLink = (tab: string) => {
   return TRACKING_LINK;
 };
 
-const NAVY = "#0A1931";
-const GOLD = "#FFC300";
-
-// ✅ TRAVELSTART AFFILIATE - APPROVED 13 Oct 2026 - LIVE - OPTION 1 HYBRID
-// Publisher: Mthokozisi Gwala 7936957 - Program 5446 - Finance 100%
-// Tracking: https://travelstart.zwjlk6.net/k4Xqbx - R105 domestic / R145 international + bonus up to R205
-const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx";
-const AFF_ID = "k4Xqbx";
-const getTravelstartLink = (tab: string) => {
-  if (tab === "flights") return `${TRACKING_LINK}?utm_source=khilanetravel&utm_medium=flights&utm_campaign=R20`;
-  if (tab === "stays") return `${TRACKING_LINK}?utm_source=khilanetravel&utm_medium=stays`;
-  if (tab === "cars") return `${TRACKING_LINK}?utm_source=khilanetravel&utm_medium=cars`;
-  if (tab === "buses") return `${TRACKING_LINK}?utm_source=khilanetravel&utm_medium=buses`;
-  return TRACKING_LINK;
-};
-
 const mockFlights = [
   { id: 1, airline: "FlySafair", code: "FA", logo: "FA", from: "JNB", to: "CPT", dep: "06:15", arr: "08:25", dur: "2h 10m", stops: "Direct", price: 864, original: 914, badge: true, seats: 3 },
   { id: 2, airline: "Airlink", code: "4Z", logo: "4Z", from: "JNB", to: "CPT", dep: "08:40", arr: "10:55", dur: "2h 15m", stops: "Direct", price: 902, original: 952, badge: true, seats: 5 },
