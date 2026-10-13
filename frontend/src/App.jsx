@@ -22,7 +22,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 
-type Tab = "flights" | "stays" | "cars" | "buses";
+// Tab: flights | stays | cars | buses
 
 const NAVY = "#0A1931";
 const GOLD = "#FFC300";
@@ -32,7 +32,7 @@ const GOLD = "#FFC300";
 // Tracking link: https://travelstart.zwjlk6.net/k4Xqbx - Earns R105 domestic / R145 international
 const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx";
 const AFF_ID = "k4Xqbx";
-const getTravelstartLink = (tab: string) => {
+const getTravelstartLink = (tab) => {
   if (tab === "flights") return `${TRACKING_LINK}?utm_source=khilanetravel&utm_medium=flights&utm_campaign=R20`;
   if (tab === "stays") return `${TRACKING_LINK}?utm_source=khilanetravel&utm_medium=stays`;
   if (tab === "cars") return `${TRACKING_LINK}?utm_source=khilanetravel&utm_medium=cars`;
@@ -78,7 +78,7 @@ export default function App() {
   const [passengers, setPassengers] = useState(1);
   const [showResults, setShowResults] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
-  const [selected, setSelected] = useState<any>(null);
+  const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [modalStep, setModalStep] = useState(1);
   const [bookingRef, setBookingRef] = useState("");
@@ -100,7 +100,7 @@ export default function App() {
     }, 900);
   };
 
-  const openBooking = (item: any) => {
+  const openBooking = (item) => {
     setSelected(item); setModalStep(1); setShowModal(true);
     setBookingRef(`BK-2026-${Math.floor(1000 + Math.random() * 9000)}`);
   };
@@ -159,7 +159,7 @@ export default function App() {
               ].map(t => {
                 const active = activeTab === t.id;
                 return (
-                  <button key={t.id} onClick={() => { setActiveTab(t.id as Tab); setShowResults(true); }}
+                  <button key={t.id} onClick={() => { setActiveTab(t.id); setShowResults(true); }}
                     className={`h-9 px-4 rounded-full text-[13px] font-semibold flex items-center gap-1.5 transition ${active ? "text-white shadow" : "text-slate-600 hover:bg-white"}`}
                     style={{ background: active ? NAVY : "transparent" }}>
                     <t.icon size={14} /> {t.label}
@@ -230,7 +230,7 @@ export default function App() {
                 <span className="text-[11px] px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">On-Site • No kiwi.com</span>
               </div>
 
-              {(activeTab === "flights" ? mockFlights : activeTab === "stays" ? mockStays : activeTab === "cars" ? mockCars : mockBuses).map((item: any) => (
+              {(activeTab === "flights" ? mockFlights : activeTab === "stays" ? mockStays : activeTab === "cars" ? mockCars : mockBuses).map((item) => (
                 <div key={item.id} className="rounded-[18px] bg-white border shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-black text-[12px]">{item.logo || item.company?.[0] || "K"}</div>
