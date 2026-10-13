@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
-import {
-  Plane,
-  Building2,
-  Car,
-  Bus,
-  Search,
-  ArrowLeftRight,
-  Clock,
-  Star,
-  MapPin,
-  Users,
-  Check,
-  X,
-  Copy,
-  CreditCard,
-  ShieldCheck,
-  Calendar,
-  Luggage,
-  Fuel,
-  Armchair,
-  AlertCircle,
-} from "lucide-react";
+// ✅ No lucide-react dependency - using emoji dummies to fix Rollup build fail 13 Oct
+const Plane = (props) => <span {...props}>✈️</span>;
+const Building2 = (props) => <span {...props}>🏨</span>;
+const Car = (props) => <span {...props}>🚗</span>;
+const Bus = (props) => <span {...props}>🚌</span>;
+const Search = (props) => <span {...props}>🔍</span>;
+const ArrowLeftRight = (props) => <span {...props}>⇄</span>;
+const Clock = (props) => <span {...props}>🕒</span>;
+const Star = (props) => <span {...props}>⭐</span>;
+const MapPin = (props) => <span {...props}>📍</span>;
+const Users = (props) => <span {...props}>👥</span>;
+const Check = (props) => <span {...props}>✓</span>;
+const X = (props) => <span {...props}>✕</span>;
+const Copy = (props) => <span {...props}>📋</span>;
+const CreditCard = (props) => <span {...props}>💳</span>;
+const ShieldCheck = (props) => <span {...props}>🛡️</span>;
+const Calendar = (props) => <span {...props}>📅</span>;
+const Luggage = (props) => <span {...props}>🧳</span>;
+const Fuel = (props) => <span {...props}>⛽</span>;
+const Armchair = (props) => <span {...props}>💺</span>;
+const AlertCircle = (props) => <span {...props}>⚠️</span>;
 
 // Tab: flights | stays | cars | buses
 
