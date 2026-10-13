@@ -1,6 +1,6 @@
--import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-// ✅ OPTION 2 - PURE AFFILIATE - CUSTOMER SAFE - NO SENSITIVE INFO SHOWN
+// OPTION 2 - PURE AFFILIATE - CUSTOMER SAFE - NO SENSITIVE INFO SHOWN
 // Approved 13 Oct 2026 - Publisher Mthokozisi Gwala 7936957 - Program 5446
 // Finance 100% - Threshold ZAR300 - Tracking hidden from customers but active
 const NAVY = "#0A1931";
@@ -73,7 +73,7 @@ export default function App() {
   return (
     <div style={{ minHeight: '100vh', background: '#F6F7FB', fontFamily: 'Inter, system-ui, sans-serif', color: '#0f172a' }}>
       <div style={{ background: GOLD, color: NAVY, textAlign: 'center', padding: '10px', fontSize: 12, fontWeight: 900 }}>
-        🇿🇦 TRAVEL PROUDLY SOUTH AFRICAN — SOUTH AFRICA'S LOWEST PRICES GUARANTEED 🇿🇦
+        ZA TRAVEL PROUDLY SOUTH AFRICAN — SOUTH AFRICA'S LOWEST PRICES GUARANTEED ZA
       </div>
 
       <header style={{ position: 'sticky', top: 0, zIndex: 20, background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #e2e8f0' }}>
@@ -81,11 +81,11 @@ export default function App() {
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <div style={{ width: 36, height: 36, borderRadius: 12, background: NAVY, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>K</div>
             <div>
-              <div style={{ fontWeight: 900, fontSize: 18, color: NAVY }}>Khilane Travel ✈️</div>
+              <div style={{ fontWeight: 900, fontSize: 18, color: NAVY }}>Khilane Travel Flight</div>
               <div style={{ fontSize: 11, fontWeight: 600, color: '#475569' }}>SA's Lowest Prices • Instant E-Ticket • Secure Booking</div>
             </div>
           </div>
-          <div style={{ padding: '6px 12px', borderRadius: 999, background: '#ecfdf5', color: '#065f46', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700 }}>✓ Secure • Trusted SA Brand</div>
+          <div style={{ padding: '6px 12px', borderRadius: 999, background: '#ecfdf5', color: '#065f46', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700 }}>V Secure • Trusted SA Brand</div>
         </div>
       </header>
 
@@ -93,14 +93,14 @@ export default function App() {
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 20 }}>
           <div style={{ background: 'white', borderRadius: 24, border: '1px solid #e2e8f0', boxShadow: '0 10px 40px rgba(10,25,49,0.06)', overflow: 'hidden' }}>
             <div style={{ display: 'flex', gap: 6, background: '#f8fafc', margin: 8, padding: 4, borderRadius: 999, width: 'fit-content' }}>
-              {[{ id: "flights", l: "Flights", i: "✈️" }, { id: "stays", l: "Stays", i: "🏨" }, { id: "cars", l: "Car Hire", i: "🚗" }, { id: "buses", l: "Buses", i: "🚌" }].map(t => (
+              {[{ id: "flights", l: "Flights", i: "Flight" }, { id: "stays", l: "Stays", i: "Hotel" }, { id: "cars", l: "Car Hire", i: "Car" }, { id: "buses", l: "Buses", i: "Bus" }].map(t => (
                 <button key={t.id} onClick={() => setActiveTab(t.id)} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', cursor: 'pointer', fontWeight: 700, fontSize: 13, background: activeTab === t.id ? NAVY : 'transparent', color: activeTab === t.id ? 'white' : '#475569' }}>{t.i} {t.l}</button>
               ))}
             </div>
             <div style={{ padding: '0 20px 20px', display: 'grid', gap: 12 }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 8, alignItems: 'end' }}>
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>From</label><input value={searchFrom} onChange={e => setSearchFrom(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
-                <div style={{ paddingBottom: 10 }}>⇄</div>
+                <div style={{ paddingBottom: 10 }}><-></div>
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>To</label><input value={searchTo} onChange={e => setSearchTo(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
@@ -115,12 +115,12 @@ export default function App() {
           <div style={{ background: NAVY, color: 'white', borderRadius: 20, padding: 20 }}>
             <div style={{ fontWeight: 900, fontSize: 16 }}>Why Khilane Travel?</div>
             <div style={{ marginTop: 12, display: 'grid', gap: 10, fontSize: 13 }}>
-              <div>✓ South Africa's Lowest Prices — Beat by R50 Guaranteed</div>
-              <div>✓ Instant E-Ticket — No waiting, ticket issued in minutes</div>
-              <div>✓ Trusted SA Brand — Powered by Travelstart</div>
-              <div>✓ Secure & Safe — No hidden USD, ZAR only</div>
-              <div>✓ 24/7 Support — Changes, refunds, customer care</div>
-              <div style={{ background: GOLD, color: NAVY, padding: 10, borderRadius: 10, fontWeight: 900 }}>✓ 100% Secure Checkout — Instant confirmation</div>
+              <div>V South Africa's Lowest Prices — Beat by R50 Guaranteed</div>
+              <div>V Instant E-Ticket — No waiting, ticket issued in minutes</div>
+              <div>V Trusted SA Brand — Powered by Travelstart</div>
+              <div>V Secure & Safe — No hidden USD, ZAR only</div>
+              <div>V 24/7 Support — Changes, refunds, customer care</div>
+              <div style={{ background: GOLD, color: NAVY, padding: 10, borderRadius: 10, fontWeight: 900 }}>V 100% Secure Checkout — Instant confirmation</div>
             </div>
           </div>
         </div>
@@ -128,7 +128,7 @@ export default function App() {
         <div style={{ marginTop: 20 }}>
           <h2 style={{ fontWeight: 900, fontSize: 20, color: NAVY }}>Flights {searchFrom} → {searchTo} • Best Prices in ZAR</h2>
           <div style={{ marginTop: 8 }}>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>✓ Instant E-Ticket • Trusted SA • Secure</span>
+            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>V Instant E-Ticket • Trusted SA • Secure</span>
           </div>
           <div style={{ marginTop: 12, display: 'grid', gap: 10 }}>
             {data.map((item) => (
