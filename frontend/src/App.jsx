@@ -69,7 +69,7 @@ const mockBuses = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>("flights");
+  const [activeTab, setActiveTab] = useState("flights");
   const [searchFrom, setSearchFrom] = useState("JNB");
   const [searchTo, setSearchTo] = useState("CPT");
   const [departDate, setDepartDate] = useState("2026-10-15");
@@ -81,7 +81,7 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [modalStep, setModalStep] = useState(1);
   const [bookingRef, setBookingRef] = useState("");
-  const [docType, setDocType] = useState<"sa" | "passport">("sa");
+  const [docType, setDocType] = useState("sa");
   const [form, setForm] = useState({
     firstName: "", lastName: "", idNumber: "", passportNum: "",
     nationality: "South African", passportExpiry: "", email: "", phone: "",
