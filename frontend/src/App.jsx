@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 
-// OPTION 2 - PURE AFFILIATE - CUSTOMER SAFE - NO SENSITIVE INFO SHOWN
-// Approved 13 Oct 2026 - Publisher Mthokozisi Gwala 7936957 - Program 5446
-// Finance 100% - Threshold ZAR300 - Tracking hidden from customers but active
+// FINAL - OPTION 2 PURE AFFILIATE - CUSTOMER SAFE - NO BEAT CLAIM - AFFILIATE COMPLIANT - NO USD
+// Contacts: WhatsApp 0724573419 - Email info@khilanetravel.co.za
+// Tracking hidden but active: https://travelstart.zwjlk6.net/k4Xqbx - Publisher 7936957
+// ROADMAP: Phase 1 = Travelstart affiliate now (R105/R145 per flight, safe, no Paystack needed)
+//          Phase 2 = Standalone later AFTER Paystack ID 2042515 approved -> Apply Duffel for own ticketing + full markup on car hire/hotels/buses
+//          STATUS: Duffel NOT applied yet - waiting for Paystack approval per user decision 15 Oct 2026
+//          NOTE: User asked to be reminded to apply Duffel when Paystack approves
 const NAVY = "#0A1931";
 const GOLD = "#FFC300";
-const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx"; // Hidden from customers, still tracks
+const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx";
+const WHATSAPP_NUMBER = "0724573419";
+const WHATSAPP_LINK = "https://wa.me/27724573419";
+const EMAIL = "info@khilanetravel.co.za";
 
 const getTravelstartLink = (tab) => {
   const base = TRACKING_LINK;
@@ -73,7 +80,7 @@ export default function App() {
   return (
     <div style={{ minHeight: '100vh', background: '#F6F7FB', fontFamily: 'Inter, system-ui, sans-serif', color: '#0f172a' }}>
       <div style={{ background: GOLD, color: NAVY, textAlign: 'center', padding: '10px', fontSize: 12, fontWeight: 900 }}>
-        ZA TRAVEL PROUDLY SOUTH AFRICAN — SOUTH AFRICA'S LOWEST PRICES GUARANTEED ZA
+        SA TRAVEL PROUDLY SOUTH AFRICAN — COMPARE FLIGHTS, STAYS, CARS, BUSES — POWERED BY TRAVELSTART
       </div>
 
       <header style={{ position: 'sticky', top: 0, zIndex: 20, background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #e2e8f0' }}>
@@ -81,11 +88,14 @@ export default function App() {
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <div style={{ width: 36, height: 36, borderRadius: 12, background: NAVY, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>K</div>
             <div>
-              <div style={{ fontWeight: 900, fontSize: 18, color: NAVY }}>Khilane Travel Flight</div>
-              <div style={{ fontSize: 11, fontWeight: 600, color: '#475569' }}>SA's Lowest Prices - Instant E-Ticket - Secure Booking</div>
+              <div style={{ fontWeight: 900, fontSize: 18, color: NAVY }}>Khilane Travel</div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: '#475569' }}>Compare & Book - Best Deals - Instant E-Ticket</div>
             </div>
           </div>
-          <div style={{ padding: '6px 12px', borderRadius: 999, background: '#ecfdf5', color: '#065f46', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700 }}>V Secure - Trusted SA Brand</div>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" style={{ padding: '6px 12px', borderRadius: 999, background: '#25D366', color: 'white', fontSize: 11, fontWeight: 700, textDecoration: 'none' }}>WhatsApp: {WHATSAPP_NUMBER}</a>
+            <a href={`mailto:${EMAIL}`} style={{ padding: '6px 12px', borderRadius: 999, background: NAVY, color: 'white', fontSize: 11, fontWeight: 700, textDecoration: 'none' }}>{EMAIL}</a>
+          </div>
         </div>
       </header>
 
@@ -93,8 +103,8 @@ export default function App() {
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 20 }}>
           <div style={{ background: 'white', borderRadius: 24, border: '1px solid #e2e8f0', boxShadow: '0 10px 40px rgba(10,25,49,0.06)', overflow: 'hidden' }}>
             <div style={{ display: 'flex', gap: 6, background: '#f8fafc', margin: 8, padding: 4, borderRadius: 999, width: 'fit-content' }}>
-              {[{ id: "flights", l: "Flights", i: "Flight" }, { id: "stays", l: "Stays", i: "Hotel" }, { id: "cars", l: "Car Hire", i: "Car" }, { id: "buses", l: "Buses", i: "Bus" }].map(t => (
-                <button key={t.id} onClick={() => setActiveTab(t.id)} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', cursor: 'pointer', fontWeight: 700, fontSize: 13, background: activeTab === t.id ? NAVY : 'transparent', color: activeTab === t.id ? 'white' : '#475569' }}>{t.i} {t.l}</button>
+              {[{ id: "flights", l: "Flights" }, { id: "stays", l: "Stays" }, { id: "cars", l: "Car Hire" }, { id: "buses", l: "Buses" }].map(t => (
+                <button key={t.id} onClick={() => setActiveTab(t.id)} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', cursor: 'pointer', fontWeight: 700, fontSize: 13, background: activeTab === t.id ? NAVY : 'transparent', color: activeTab === t.id ? 'white' : '#475569' }}>{t.l}</button>
               ))}
             </div>
             <div style={{ padding: '0 20px 20px', display: 'grid', gap: 12 }}>
@@ -107,27 +117,33 @@ export default function App() {
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>Depart</label><input type="date" value={departDate} onChange={e => setDepartDate(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>Return</label><input type="date" value={returnDate} onChange={e => setReturnDate(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
               </div>
-              <button onClick={handleSearch} style={{ height: 48, borderRadius: 999, background: NAVY, color: 'white', fontWeight: 900, border: 'none', cursor: 'pointer' }}>{isSearching ? "Searching..." : `Search ${activeTab} in ZAR  -> `}</button>
-              <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center' }}>Powered by Travelstart - Instant e-ticket - ZAR</div>
+              <button onClick={handleSearch} style={{ height: 48, borderRadius: 999, background: NAVY, color: 'white', fontWeight: 900, border: 'none', cursor: 'pointer' }}>{isSearching ? "Searching..." : `Search ${activeTab} in ZAR`}</button>
+              <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center' }}>Powered by Travelstart - Instant e-ticket - WhatsApp {WHATSAPP_NUMBER} - {EMAIL}</div>
             </div>
           </div>
 
           <div style={{ background: NAVY, color: 'white', borderRadius: 20, padding: 20 }}>
             <div style={{ fontWeight: 900, fontSize: 16 }}>Why Khilane Travel?</div>
             <div style={{ marginTop: 12, display: 'grid', gap: 10, fontSize: 13 }}>
-              <div>V South Africa's Lowest Prices — Beat by R20 Guaranteed</div>
-              <div>V Instant E-Ticket — No waiting, ticket issued in minutes</div>
-              <div>V Trusted SA Brand — Powered by Travelstart</div>
-              <div>V 24/7 Support — Changes, refunds, customer care</div>
-              <div style={{ background: GOLD, color: NAVY, padding: 10, borderRadius: 10, fontWeight: 900 }}>V 100% Secure Checkout — Instant confirmation</div>
+              <div>V Compare Best Prices from Trusted Suppliers</div>
+              <div>V Instant E-Ticket - No waiting, ticket issued in minutes</div>
+              <div>V Trusted SA Brand - Powered by Travelstart</div>
+              <div>V 24/7 Support - Changes, refunds, customer care</div>
+              <div>V WhatsApp: {WHATSAPP_NUMBER} - Fast bookings</div>
+              <div>V Email: {EMAIL}</div>
+              <div style={{ background: GOLD, color: NAVY, padding: 10, borderRadius: 10, fontWeight: 900 }}>V 100% Secure Checkout - Instant confirmation</div>
+            </div>
+            <div style={{ marginTop: 16, display: 'grid', gap: 8 }}>
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textAlign: 'center', padding: '10px', borderRadius: 999, background: '#25D366', color: 'white', fontWeight: 800, fontSize: 13, textDecoration: 'none' }}>Chat on WhatsApp: {WHATSAPP_NUMBER}</a>
+              <a href={`mailto:${EMAIL}`} style={{ display: 'block', textAlign: 'center', padding: '10px', borderRadius: 999, background: 'white', color: NAVY, fontWeight: 800, fontSize: 13, textDecoration: 'none' }}>Email: {EMAIL}</a>
             </div>
           </div>
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <h2 style={{ fontWeight: 900, fontSize: 20, color: NAVY }}>Flights {searchFrom}  ->  {searchTo} - Best Prices in ZAR</h2>
+          <h2 style={{ fontWeight: 900, fontSize: 20, color: NAVY }}>Flights {searchFrom} to {searchTo} - Best Prices in ZAR</h2>
           <div style={{ marginTop: 8 }}>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>V Instant E-Ticket - Trusted SA - Secure</span>
+            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>V Instant E-Ticket - Trusted SA - Secure - Powered by Travelstart</span>
           </div>
           <div style={{ marginTop: 12, display: 'grid', gap: 10 }}>
             {data.map((item) => (
@@ -135,7 +151,7 @@ export default function App() {
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                   <div style={{ width: 36, height: 36, borderRadius: 999, background: NAVY, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 11 }}>{item.code || item.company?.[0] || "K"}</div>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 13 }}>{item.airline || item.name || item.company} - {item.from ? `${item.from} ${item.dep}  ->  ${item.to} ${item.arr}` : item.name}</div>
+                    <div style={{ fontWeight: 700, fontSize: 13 }}>{item.airline || item.name || item.company} - {item.from ? `${item.from} ${item.dep} to ${item.to} ${item.arr}` : item.name}</div>
                     <div style={{ fontSize: 11, color: '#64748b' }}>{item.dur || item.loc} - {item.stops || item.tag} - {item.seats ? item.seats + " seats" : ""}</div>
                   </div>
                 </div>
@@ -143,19 +159,36 @@ export default function App() {
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 11, color: '#94a3b8', textDecoration: 'line-through' }}>R{item.original}</div>
                     <div style={{ fontWeight: 900, fontSize: 16, color: NAVY }}>R{item.price}</div>
-                    {item.badge && <div style={{ marginTop: 2, display: 'inline-flex', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 999, background: GOLD, color: NAVY }}>BEAT BY R20</div>}
+                    {item.badge && <div style={{ marginTop: 2, display: 'inline-flex', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 999, background: GOLD, color: NAVY }}>POPULAR</div>}
                   </div>
-                  <button onClick={() => openTravelstart()} style={{ height: 40, padding: '0 18px', borderRadius: 999, background: NAVY, color: 'white', border: 'none', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>Select — Book Now</button>
+                  <button onClick={() => openTravelstart()} style={{ height: 40, padding: '0 18px', borderRadius: 999, background: NAVY, color: 'white', border: 'none', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>Select - Book Now</button>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
+        <div style={{ marginTop: 24, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div style={{ background: 'white', borderRadius: 16, border: '1px solid #e2e8f0', padding: 16, textAlign: 'center' }}>
+            <div style={{ fontWeight: 900, fontSize: 14, color: NAVY }}>Need Help Booking?</div>
+            <div style={{ marginTop: 8, fontSize: 12, color: '#475569' }}>Chat with us on WhatsApp or Email us</div>
+            <div style={{ marginTop: 12, display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" style={{ padding: '8px 16px', borderRadius: 999, background: '#25D366', color: 'white', fontWeight: 800, fontSize: 12, textDecoration: 'none' }}>WhatsApp: {WHATSAPP_NUMBER}</a>
+              <a href={`mailto:${EMAIL}`} style={{ padding: '8px 16px', borderRadius: 999, background: NAVY, color: 'white', fontWeight: 800, fontSize: 12, textDecoration: 'none' }}>{EMAIL}</a>
+            </div>
+          </div>
+          <div style={{ background: NAVY, borderRadius: 16, padding: 16, color: 'white', textAlign: 'center' }}>
+            <div style={{ fontWeight: 900, fontSize: 14 }}>Contact Khilane Travel</div>
+            <div style={{ marginTop: 6, fontSize: 12, opacity: 0.9 }}>Fast response - 7 days a week</div>
+            <div style={{ marginTop: 10, fontSize: 13, fontWeight: 700 }}>WhatsApp: {WHATSAPP_NUMBER}<br/>Email: {EMAIL}<br/>Web: khilanetravel.co.za</div>
+          </div>
+        </div>
+
         <div style={{ marginTop: 24, textAlign: 'center', fontSize: 11, color: '#64748b', padding: 12, background: 'white', borderRadius: 12, border: '1px solid #e2e8f0' }}>
-          © 2026 Khilane Travel - Proudly South African - Powered by Travelstart - Instant e-ticket - Secure ZAR checkout
+          © 2026 Khilane Travel - Proudly South African - Powered by Travelstart - WhatsApp {WHATSAPP_NUMBER} - Email {EMAIL} - Instant e-ticket - Secure ZAR checkout
         </div>
       </main>
+      <a href={`${WHATSAPP_LINK}?text=Hi%20Khilane%20Travel%20-%20I%20want%20to%20book%20a%20flight`} target="_blank" rel="noopener noreferrer" style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 50, width: 56, height: 56, borderRadius: 999, background: '#25D366', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 900, boxShadow: '0 10px 30px rgba(0,0,0,0.3)', textDecoration: 'none' }}>WA</a>
     </div>
   );
 }
