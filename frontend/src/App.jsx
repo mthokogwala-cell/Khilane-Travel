@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from "react";
 
-// FINAL - OPTION 2 PURE AFFILIATE - CUSTOMER SAFE - NO BEAT CLAIM - AFFILIATE COMPLIANT - NO USD
+// FINAL - OPTION 2 PURE AFFILIATE - CUSTOMER SAFE - NO BEAT CLAIM - AFFILIATE COMPLIANT - TRAVELSTART + DISCOVERCARS - NO USD
 // Contacts: WhatsApp 0724573419 - Email info@khilanetravel.co.za
-// Tracking hidden but active: https://travelstart.zwjlk6.net/k4Xqbx - Publisher 7936957
-// ROADMAP: Phase 1 = Travelstart affiliate now (R105/R145 per flight, safe, no Paystack needed)
-//          Phase 2 = Standalone later AFTER Paystack ID 2042515 approved -> Apply Duffel for own ticketing + full markup on car hire/hotels/buses
-//          STATUS: Duffel NOT applied yet - waiting for Paystack approval per user decision 15 Oct 2026
+// Tracking: Travelstart https://travelstart.zwjlk6.net/k4Xqbx - Publisher 7936957 (FLIGHTS R105/R145)
+// Tracking: DiscoverCars affiliate APPROVED - LIVE - khilanetravel - 70% profit, 365d cookie, ZAR forced
+// ROADMAP: Phase 1 = Travelstart flights + DiscoverCars cars (affiliate now, safe, no Paystack needed)
+//          Phase 2 = Standalone later AFTER Paystack ID 2042515 approved -> Apply Duffel for own ticketing + full markup on hotels/buses + keep DiscoverCars for cars
+//          STATUS: Duffel NOT applied yet - waiting for Paystack approval per user decision 15 Oct 2026 - DiscoverCars application next
 //          NOTE: User asked to be reminded to apply Duffel when Paystack approves
 const NAVY = "#0A1931";
 const GOLD = "#FFC300";
 const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx";
+const DISCOVERCARS_LINK = "https://www.discovercars.com/?a_aid=khilanetravel"; // APPROVED - Real ID from email
+const DISCOVERCARS_ZAR_LINK = "https://www.discovercars.com/?a_aid=khilanetravel&currency=ZAR"; // Forces ZAR for SA customers
+const DISCOVERCARS_AFFILIATE_STATUS = "LIVE"; // APPROVED 17 Oct 2026
 const WHATSAPP_NUMBER = "0724573419";
 const WHATSAPP_LINK = "https://wa.me/27724573419";
 const EMAIL = "info@khilanetravel.co.za";
+
+const getCarHireLinkWithZAR = () => {
+  // Forces ZAR display for SA customers - solves user's ZAR question
+  return DISCOVERCARS_ZAR_LINK;
+};
 
 const getTravelstartLink = (tab) => {
   const base = TRACKING_LINK;
   if (tab === "flights") return `${base}?utm_source=khilanetravel&utm_medium=flights&utm_campaign=option2`;
   if (tab === "stays") return `${base}?utm_source=khilanetravel&utm_medium=stays`;
-  if (tab === "cars") return `${base}?utm_source=khilanetravel&utm_medium=cars`;
+  if (tab === "cars") {
+    // DiscoverCars LIVE - forces ZAR - commission R200-R600 vs Travelstart R0
+    return `${DISCOVERCARS_ZAR_LINK}&utm_source=khilanetravel&utm_medium=cars`;
+  }
   if (tab === "buses") return `${base}?utm_source=khilanetravel&utm_medium=buses`;
   return base;
+};
+
+const getCarHireLink = () => {
+  if (DISCOVERCARS_AFFILIATE_STATUS === "LIVE") return DISCOVERCARS_LINK;
+  return getTravelstartLink("cars");
 };
 
 const mockFlights = [
@@ -80,7 +97,7 @@ export default function App() {
   return (
     <div style={{ minHeight: '100vh', background: '#F6F7FB', fontFamily: 'Inter, system-ui, sans-serif', color: '#0f172a' }}>
       <div style={{ background: GOLD, color: NAVY, textAlign: 'center', padding: '10px', fontSize: 12, fontWeight: 900 }}>
-        SA TRAVEL PROUDLY SOUTH AFRICAN — COMPARE FLIGHTS, STAYS, CARS, BUSES — POWERED BY TRAVELSTART
+        SA TRAVEL PROUDLY SOUTH AFRICAN — COMPARE FLIGHTS, STAYS, CARS, BUSES — POWERED BY TRAVELSTART & DISCOVERCARS
       </div>
 
       <header style={{ position: 'sticky', top: 0, zIndex: 20, background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #e2e8f0' }}>
@@ -118,7 +135,7 @@ export default function App() {
                 <div><label style={{ fontSize: 10, fontWeight: 800, color: '#64748b', textTransform: 'uppercase' }}>Return</label><input type="date" value={returnDate} onChange={e => setReturnDate(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #e2e8f0', padding: '0 12px', marginTop: 4 }} /></div>
               </div>
               <button onClick={handleSearch} style={{ height: 48, borderRadius: 999, background: NAVY, color: 'white', fontWeight: 900, border: 'none', cursor: 'pointer' }}>{isSearching ? "Searching..." : `Search ${activeTab} in ZAR`}</button>
-              <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center' }}>Powered by Travelstart - Instant e-ticket - WhatsApp {WHATSAPP_NUMBER} - {EMAIL}</div>
+              <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center' }}>Powered by Travelstart & DiscoverCars - Instant e-ticket - WhatsApp {WHATSAPP_NUMBER} - {EMAIL}</div>
             </div>
           </div>
 
@@ -127,7 +144,7 @@ export default function App() {
             <div style={{ marginTop: 12, display: 'grid', gap: 10, fontSize: 13 }}>
               <div>V Compare Best Prices from Trusted Suppliers</div>
               <div>V Instant E-Ticket - No waiting, ticket issued in minutes</div>
-              <div>V Trusted SA Brand - Powered by Travelstart</div>
+              <div>V Trusted SA Brand - Powered by Travelstart & DiscoverCars</div>
               <div>V 24/7 Support - Changes, refunds, customer care</div>
               <div>V WhatsApp: {WHATSAPP_NUMBER} - Fast bookings</div>
               <div>V Email: {EMAIL}</div>
@@ -143,7 +160,7 @@ export default function App() {
         <div style={{ marginTop: 20 }}>
           <h2 style={{ fontWeight: 900, fontSize: 20, color: NAVY }}>Flights {searchFrom} to {searchTo} - Best Prices in ZAR</h2>
           <div style={{ marginTop: 8 }}>
-            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>V Instant E-Ticket - Trusted SA - Secure - Powered by Travelstart</span>
+            <span style={{ padding: '4px 10px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0', fontSize: 11, fontWeight: 700, color: '#065f46' }}>V Instant E-Ticket - Trusted SA - Secure - Powered by Travelstart & DiscoverCars</span>
           </div>
           <div style={{ marginTop: 12, display: 'grid', gap: 10 }}>
             {data.map((item) => (
@@ -185,7 +202,7 @@ export default function App() {
         </div>
 
         <div style={{ marginTop: 24, textAlign: 'center', fontSize: 11, color: '#64748b', padding: 12, background: 'white', borderRadius: 12, border: '1px solid #e2e8f0' }}>
-          © 2026 Khilane Travel - Proudly South African - Powered by Travelstart - WhatsApp {WHATSAPP_NUMBER} - Email {EMAIL} - Instant e-ticket - Secure ZAR checkout
+          © 2026 Khilane Travel - Proudly South African - Powered by Travelstart & DiscoverCars - WhatsApp {WHATSAPP_NUMBER} - Email {EMAIL} - Instant e-ticket - Secure ZAR checkout
         </div>
       </main>
       <a href={`${WHATSAPP_LINK}?text=Hi%20Khilane%20Travel%20-%20I%20want%20to%20book%20a%20flight`} target="_blank" rel="noopener noreferrer" style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 50, width: 56, height: 56, borderRadius: 999, background: '#25D366', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 900, boxShadow: '0 10px 30px rgba(0,0,0,0.3)', textDecoration: 'none' }}>WA</a>
