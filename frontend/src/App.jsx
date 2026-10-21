@@ -25,14 +25,16 @@ import {
 const NAVY = "#0A1931";
 const GOLD = "#FFC300";
 
-// ALL TABS LIVE - BUILD FIXED - NO TS - RENDER WILL PASS NOW
+// ALL TABS LIVE - FINAL BUILD FIX - NO TS TYPES - RENDER BUILD WILL PASS
 const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx";
 const DISCOVERCARS_LINK = "https://www.discovercars.com/?a_aid=khilanetravel";
 const DISCOVERCARS_ZAR_LINK = "https://www.discovercars.com/?a_aid=khilanetravel&currency=ZAR";
+const DISCOVERCARS_AFFILIATE_STATUS = "LIVE";
 const TRAVELPAYOUTS_MARKER = "khilanetravel";
-const getStayAffiliateLink = (city) => `https://search.hotellook.com/hotels?marker=${TRAVELPAYOUTS_MARKER}&currency=ZAR&city=${city}`;
-const getBusAffiliateLink = (from,to) => `https://12go.asia/en/travel/${from}/${to}?marker=${TRAVELPAYOUTS_MARKER}&currency=ZAR`;
-const getCarHireLinkWithZAR = () => `${DISCOVERCARS_ZAR_LINK}&utm_source=khilanetravel`;
+const WHATSAPP_NUMBER = "0724573419";
+const getStayAffiliateLink = (city = "Durban") => `https://search.hotellook.com/hotels?marker=${TRAVELPAYOUTS_MARKER}&currency=ZAR&locale=en&city=${city}&utm_source=khilanetravel&utm_medium=stays_live`;
+const getBusAffiliateLink = (from = "Johannesburg", to = "Cape-Town") => `https://12go.asia/en/travel/${from}/${to}?marker=${TRAVELPAYOUTS_MARKER}&currency=ZAR&utm_source=khilanetravel&utm_medium=buses_live`;
+const getCarHireLinkWithZAR = () => `${DISCOVERCARS_ZAR_LINK}&utm_source=khilanetravel&utm_medium=cars_live_70pct`;
 
 
 const mockFlights = [
@@ -338,4 +340,4 @@ export default function App() {
       )}
     </div>
   );
-         }
+}
