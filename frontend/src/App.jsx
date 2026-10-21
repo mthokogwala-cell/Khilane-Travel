@@ -22,24 +22,20 @@ import {
   AlertCircle,
 } from "lucide-react";
 
-type Tab = "flights" | "stays" | "cars" | "buses";
-
 const NAVY = "#0A1931";
 const GOLD = "#FFC300";
 
-// === ALL TABS LIVE - FINAL FIX - PAYSTACK REJECTED BUT FLIGHTS+CARS ALREADY PAY DIRECT TO NEDBANK ===
-const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx"; // Flights LIVE R105/R145 SA EFT
-const DISCOVERCARS_LINK = "https://www.discovercars.com/?a_aid=khilanetravel"; // Cars LIVE 70%
+// ALL TABS LIVE - FINAL BUILD FIX - NO TS TYPES - RENDER BUILD WILL PASS
+const TRACKING_LINK = "https://travelstart.zwjlk6.net/k4Xqbx";
+const DISCOVERCARS_LINK = "https://www.discovercars.com/?a_aid=khilanetravel";
 const DISCOVERCARS_ZAR_LINK = "https://www.discovercars.com/?a_aid=khilanetravel&currency=ZAR";
 const DISCOVERCARS_AFFILIATE_STATUS = "LIVE";
 const TRAVELPAYOUTS_MARKER = "khilanetravel";
-const BOOKING_AFFILIATE_ID = "YOUR_BOOKING_AID";
 const WHATSAPP_NUMBER = "0724573419";
-const WHATSAPP_LINK = "https://wa.me/27724573419";
-const EMAIL = "info@khilanetravel.co.za";
 const getStayAffiliateLink = (city = "Durban") => `https://search.hotellook.com/hotels?marker=${TRAVELPAYOUTS_MARKER}&currency=ZAR&locale=en&city=${city}&utm_source=khilanetravel&utm_medium=stays_live`;
 const getBusAffiliateLink = (from = "Johannesburg", to = "Cape-Town") => `https://12go.asia/en/travel/${from}/${to}?marker=${TRAVELPAYOUTS_MARKER}&currency=ZAR&utm_source=khilanetravel&utm_medium=buses_live`;
 const getCarHireLinkWithZAR = () => `${DISCOVERCARS_ZAR_LINK}&utm_source=khilanetravel&utm_medium=cars_live_70pct`;
+
 
 const mockFlights = [
   { id: 1, airline: "FlySafair", code: "FA", logo: "FA", from: "JNB", to: "CPT", dep: "06:15", arr: "08:25", dur: "2h 10m", stops: "Direct", price: 864, original: 914, badge: true, seats: 3 },
@@ -71,7 +67,7 @@ const mockBuses = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>("flights");
+  const [activeTab, setActiveTab] = useState("flights");
   const [searchFrom, setSearchFrom] = useState("JNB");
   const [searchTo, setSearchTo] = useState("CPT");
   const [departDate, setDepartDate] = useState("2026-10-15");
@@ -79,11 +75,11 @@ export default function App() {
   const [passengers, setPassengers] = useState(1);
   const [showResults, setShowResults] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
-  const [selected, setSelected] = useState<any>(null);
+  const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [modalStep, setModalStep] = useState(1);
   const [bookingRef, setBookingRef] = useState("");
-  const [docType, setDocType] = useState<"sa" | "passport">("sa");
+  const [docType, setDocType] = useState("sa");
   const [form, setForm] = useState({
     firstName: "", lastName: "", idNumber: "", passportNum: "",
     nationality: "South African", passportExpiry: "", email: "", phone: "",
@@ -101,7 +97,7 @@ export default function App() {
     }, 900);
   };
 
-  const openBooking = (item: any) => {
+  const openBooking = (item) => {
     setSelected(item); setModalStep(1); setShowModal(true);
     setBookingRef(`BK-2026-${Math.floor(1000 + Math.random() * 9000)}`);
   };
@@ -219,7 +215,7 @@ export default function App() {
                 <span className="text-[11px] px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">On-Site • No kiwi.com</span>
               </div>
 
-              {(activeTab === "flights" ? mockFlights : activeTab === "stays" ? mockStays : activeTab === "cars" ? mockCars : mockBuses).map((item: any) => (
+              {(activeTab === "flights" ? mockFlights : activeTab === "stays" ? mockStays : activeTab === "cars" ? mockCars : mockBuses).map((item) => (
                 <div key={item.id} className="rounded-[18px] bg-white border shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-black text-[12px]">{item.logo || item.company?.[0] || "K"}</div>
@@ -344,4 +340,4 @@ export default function App() {
       )}
     </div>
   );
-}
+                                                         }
